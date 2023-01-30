@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('role_slug');
             $table->text('role_note')->nullable()->comment('descripes the role');
             $table->boolean('is_deleteable')->default(true);
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
