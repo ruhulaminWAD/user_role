@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\ModuleController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +21,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Backend All Route
+Route::prefix('admin')->middleware(['auth'])->group(function(){
+
+    // Dashboard
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // Resource Route
+    Route::resource('/module', ModuleController::class);
+});
