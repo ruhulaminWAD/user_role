@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Module;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Permission extends Model
 {
@@ -18,7 +19,7 @@ class Permission extends Model
     }
 
     // Relationship with Module
-    public function modules()
+    public function module()
     {
         return $this->belongsTo(Module::class);
     }

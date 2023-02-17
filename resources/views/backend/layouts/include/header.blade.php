@@ -6,7 +6,7 @@
 
         <div class="navbar-left">
             <div class="navbar-btn">
-                <a href="index.html"><img src="{{ asset('backend') }}/assets/images/icon-light.svg" alt="HexaBit Logo"
+                <a href="{{ route('home') }}"><img src="{{ asset('backend') }}/assets/images/icon-light.svg" alt="HexaBit Logo"
                         class="img-fluid logo"></a>
                 <button type="button" class="btn-toggle-offcanvas"><i
                         class="lnr lnr-menu fa fa-bars"></i></button>

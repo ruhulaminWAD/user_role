@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/assetsLite/css/main.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/assetsLite/css/color_skins.css">
 
+    @stack('Backend_style');
+
 </head>
 
 <body class="theme-orange">
@@ -89,6 +91,8 @@
     {{-- Toaster Js --}}
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
+
+    @stack('Backend_javaScript');
 
 
 </body>

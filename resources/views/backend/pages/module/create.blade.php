@@ -2,8 +2,12 @@
 @extends('backend.layouts.master')
 
 {{-- Page Title --}}
-@section('page_title', 'module')
+@section('page_title', 'Module Create')
 
+{{-- Additional CSS --}}
+@push('Backend_style')
+
+@endpush
 
 {{-- Main Content --}}
 @section('admin_content')
@@ -15,7 +19,7 @@
             </div>
             <div class="col-md-6 col-sm-12 text-right">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="icon-home"></i></a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ul>
                 <a href="{{ route('module.index') }}" class="btn btn-sm btn-primary" title=""> <i class="fa fa-long-arrow-left"></i><span> </span> Back Module List</a>
@@ -42,7 +46,12 @@
                             @csrf
                             <div class="form-group">
                                 <label for="module_name" class="form-label">Module Name</label>
-                                <input class="form-control" type="text" name="module_name" id="module_name">
+                                <input class="form-control @error('module_name') is-invalid @enderror" type="text" name="module_name" id="module_name">
+                                @error('module_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                             {{-- <input type="submit" value="Submit"> --}}
@@ -52,8 +61,13 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 
 @endsection
+
+{{-- Additional JS --}}
+@push('Backend_javaScript')
+
+@endpush

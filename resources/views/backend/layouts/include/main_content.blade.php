@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-6 col-sm-12 text-right">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="icon-home"></i></a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ul>
             <a href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Create New</a>

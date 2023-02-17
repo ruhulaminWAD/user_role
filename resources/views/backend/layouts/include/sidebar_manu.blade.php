@@ -1,7 +1,7 @@
 {{-- sidebar manu --}}
 <div id="left-sidebar" class="sidebar">
     <div class="navbar-brand">
-        <a href="index.html"><img src="{{ asset('backend') }}/assets/images/icon-dark.svg" alt="HexaBit Logo"
+        <a href="{{ route('home') }}"><img src="{{ asset('backend') }}/assets/images/icon-dark.svg" alt="HexaBit Logo"
                 class="img-fluid logo"><span>HexaBit</span></a>
         <button type="button" class="btn-toggle-offcanvas btn btn-sm btn-default float-right"><i
                 class="lnr lnr-menu fa fa-chevron-circle-left"></i></button>
@@ -36,7 +36,7 @@
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul id="main-menu" class="metismenu">
 
-                <li class="active"><a href="index.html"><i class="icon-home"></i><span>Dashboard</span></a>
+                <li class="active"><a href="{{ route('home') }}"><i class="icon-home"></i><span>Dashboard</span></a>
                 </li>
                 <li> <span> SYSTEM SETTING</span> </li>
                 <li>
@@ -44,6 +44,15 @@
                     <ul>
                         <li><a href="{{ route('module.index') }}">Module List</a></li>
                         <li><a href="{{ route('module.create') }}">Module Create</a></li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>Permission Settings</span></a>
+                    <ul>
+                        <li><a href="{{ route('permission.index') }}">Permission List</a></li>
+                        <li><a href="{{ route('permission.create') }}">Permission Create</a></li>
 
                     </ul>
                 </li>
