@@ -24,6 +24,12 @@ class PermissionSeeder extends Seeder
             'Edit Role',
             'Delete Role',
         ];
+        $profileManagement = [
+            'Index Profile',
+            'Create Profile',
+            'Edit Profile',
+            'Delete Profile',
+        ];
         $userPermission = [
             'Index User',
             'Create User',
@@ -31,7 +37,7 @@ class PermissionSeeder extends Seeder
             'Delete User',
         ];
 
-        // Admin Management
+        // Admin Management Or Permission
         $admin_Module = Module::where('module_name', 'Admin Dashboard')->select('id')->first();
         Permission::updateOrCreate([
             'module_id' => $admin_Module->id,
@@ -39,7 +45,7 @@ class PermissionSeeder extends Seeder
             'permission_slug' => Str::slug($adminPermission[0]),
         ]);
 
-        // Role Management
+        // Role Management Or Permission
         $role_Module = Module::where('module_name', 'Role Management')->select('id')->first();
         foreach ($rolePermission as  $role) {
             Permission::updateOrCreate([
@@ -49,12 +55,23 @@ class PermissionSeeder extends Seeder
             ]);
         }
 
-        // User Management
-        $user_Module = Module::where('module_name', 'User Management')->select('id')->first();
+       
+        // Profile Management Or Permission
+        $profileManage = Module::where('module_name', 'Profile Management')->select('id')->first();
+        foreach ($profileManagement as  $role) {
+            Permission::updateOrCreate([
+                'module_id' => $profileManage->id,
+                'permission_name' => $role,
+                'permission_slug' => Str::slug($role),
+            ]);
+        }
 
-        // for ($i=0; $i < count($userPermission); $i++) { 
+        // User Management
+        $userManage = Module::where('module_name', 'User Management')->select('id')->first();
+
+        // for ($i=0; $i < count($userPermission); $i++) {
         //     Permission::updateOrCreate([
-        //         'module_id' => $user_Module->id,
+        //         'module_id' => $userManage->id,
         //         'permission_name' => $userPermission,
         //         'permission_slug' => Str::slug($userPermission[$i]),
         //     ]);
@@ -63,7 +80,7 @@ class PermissionSeeder extends Seeder
 
         foreach ($userPermission as  $role) {
             Permission::updateOrCreate([
-                'module_id' => $user_Module->id,
+                'module_id' => $userManage->id,
                 'permission_name' => $role,
                 'permission_slug' => Str::slug($role),
             ]);

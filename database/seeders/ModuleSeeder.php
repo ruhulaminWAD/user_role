@@ -19,15 +19,15 @@ class ModuleSeeder extends Seeder
         $moduleArray = [
             'Admin Dashboard',
             'Role Management',
+            'Profile Management',
             'User Management',
-            'Permission Management',
         ];
 
         foreach ($moduleArray as  $module) {
             Module::updateOrCreate([
                 'module_name' => $module,
                 'module_slug' => Str::slug($module),
-            ]); 
+            ]);
         }
     }
 }

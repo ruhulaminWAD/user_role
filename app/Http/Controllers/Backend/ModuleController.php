@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\ModuleStoreRequest;
+use Illuminate\Support\Facades\Gate;
 
 class ModuleController extends Controller
 {
@@ -18,7 +19,8 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        // $module = Module::all();
+        Gate::authorize('index-role'); // authorize this user access/give access to permission
+
         $modules = Module::select('id', 'module_name', 'module_slug', 'updated_at')->latest()->get();
         return view('backend.pages.module.index', compact('modules'));
     }
@@ -30,6 +32,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create-role'); // authorize this user access/give access to permission
         return view('backend.pages.module.create');
     }
 
@@ -41,6 +44,7 @@ class ModuleController extends Controller
      */
     public function store(ModuleStoreRequest $request)
     {
+        Gate::authorize('create-role'); // authorize this user access/give access to permission
         Module::updateOrCreate([
             'module_name' => $request->module_name,
             'module_slug' => Str::slug($request->module_name),
@@ -68,6 +72,7 @@ class ModuleController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('edit-role'); // authorize this user access/give access to permission
         $module = Module::find($id);
         return view('backend.pages.module.edit', compact('module'));
     }
@@ -81,6 +86,7 @@ class ModuleController extends Controller
      */
     public function update(ModuleStoreRequest $request, $id)
     {
+        Gate::authorize('edit-role'); // authorize this user access/give access to permission
         Module::find($id)->update([
             'module_name' => $request->module_name,
             'module_slug' => Str::slug($request->module_name),
@@ -97,6 +103,7 @@ class ModuleController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('delete-role'); // authorize this user access/give access to permission
         Module::find($id)->delete();
         Toastr::warning('Module Delete Successfull');
         return redirect()->back();

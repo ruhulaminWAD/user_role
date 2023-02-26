@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $permissions = Permission::select('permission_slug')->get();
+
+        $permission = 'access-dashboard';
+        // Gate::authorize('access-dashboard'); // authorize this user access/give access to admin dashboard
         // return view('home');
         return view('backend.pages.dashboard');
     }

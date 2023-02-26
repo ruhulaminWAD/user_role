@@ -46,7 +46,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="module_name" class="form-label">Module Name</label>
-                                <input class="form-control @error('module_name') is-invalid @enderror" type="text" name="module_name" id="module_name">
+                                <input class="form-control @error('module_name') is-invalid @enderror" type="text" name="module_name" id="module_name" placeholder="Create a new module">
                                 @error('module_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\PermissionStoreRequest;
 
 class PermissionController extends Controller
@@ -19,6 +20,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
+        Gate::authorize('index-role'); // authorize this user access/give access to permission
         $permissions = Permission::with('module:id,module_name,module_slug')->select('id', 'module_id', 'permission_name', 'permission_slug', 'updated_at')->latest()->get();
         // return $permissions;
         return view('backend.pages.permission.index', compact('permissions'));
@@ -31,6 +33,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create-role'); // authorize this user access/give access to permission
         $modules = Module::select('id', 'module_name')->get();
         return view('backend.pages.permission.create', compact('modules'));
     }
@@ -43,6 +46,7 @@ class PermissionController extends Controller
      */
     public function store(PermissionStoreRequest $request)
     {
+        Gate::authorize('create-role'); // authorize this user access/give access to permission
         Permission::updateOrCreate([
             'module_id' => $request->module_id,
             'permission_name' => $request->permission_name,
@@ -69,7 +73,7 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {Gate::authorize('edit-role'); // authorize this user access/give access to permission
         $modules = Module::select('id', 'module_name')->get();
         $permission = Permission::find($id);
         return view('backend.pages.permission.edit', compact('modules', 'permission'));
@@ -84,6 +88,7 @@ class PermissionController extends Controller
      */
     public function update(PermissionStoreRequest $request, $id)
     {
+        Gate::authorize('edit-role'); // authorize this user access/give access to permission
         Permission::find($id)->update([
             'module_id' => $request->module_id,
             'permission_name' => $request->permission_name,
@@ -101,6 +106,7 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('delete-role'); // authorize this user access/give access to permission
         Permission::find($id)->delete();
         Toastr::warning('Permission Delete Successfull');
         return redirect()->back();

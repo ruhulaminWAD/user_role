@@ -65,7 +65,7 @@
                             <div class="mb-3">
                                 <div class="form-group">
                                     <label for="permission_name" class="form-label">Permission Name</label>
-                                    <input class="form-control @error('permission_name') is-invalid @enderror" type="text" name="permission_name" id="permission_name">
+                                    <input class="form-control @error('permission_name') is-invalid @enderror" type="text" name="permission_name" id="permission_name" placeholder="Create a new permission">
                                     @error('permission_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

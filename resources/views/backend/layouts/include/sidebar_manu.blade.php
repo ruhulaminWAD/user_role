@@ -12,9 +12,9 @@
                 <img src="{{ asset('backend') }}/assets/images/user.png" class="user-photo" alt="User Profile Picture">
             </div>
             <div class="dropdown">
-                <span>Welcome,</span>
+                <span>{{ Auth::user()->role->role_name }}</span>
                 <a href="javascript:void(0);" class="dropdown-toggle user-name"
-                    data-toggle="dropdown"><strong>Christy Wert</strong></a>
+                    data-toggle="dropdown"><strong>{{ Auth::user()->name }}</strong></a>
                 <ul class="dropdown-menu dropdown-menu-right account">
                     <li><a href="page-profile.html"><i class="icon-user"></i>My Profile</a></li>
                     <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
@@ -39,23 +39,50 @@
                 <li class="active"><a href="{{ route('home') }}"><i class="icon-home"></i><span>Dashboard</span></a>
                 </li>
                 <li> <span> SYSTEM SETTING</span> </li>
+
+                @can('index-role')
                 <li>
                     <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>Module Settings</span></a>
                     <ul>
-                        <li><a href="{{ route('module.index') }}">Module List</a></li>
+                        <li><a href="{{ route('module.index') }}">Modules List</a></li>
                         <li><a href="{{ route('module.create') }}">Module Create</a></li>
 
                     </ul>
                 </li>
+                @endcan
 
+                @can('index-role')
                 <li>
                     <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>Permission Settings</span></a>
                     <ul>
-                        <li><a href="{{ route('permission.index') }}">Permission List</a></li>
+                        <li><a href="{{ route('permission.index') }}">Permissions List</a></li>
                         <li><a href="{{ route('permission.create') }}">Permission Create</a></li>
 
                     </ul>
                 </li>
+                @endcan
+
+                @can('index-role')
+                <li>
+                    <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>Role Settings</span></a>
+                    <ul>
+                        <li><a href="{{ route('role.index') }}">Roles List</a></li>
+                        <li><a href="{{ route('role.create') }}">Role Create</a></li>
+
+                    </ul>
+                </li>
+                @endcan
+
+                @can('index-user')
+                <li>
+                    <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>User Settings</span></a>
+                    <ul>
+                        <li><a href="{{ route('user.index') }}">Users List</a></li>
+                        <li><a href="{{ route('user.create') }}">User Create</a></li>
+
+                    </ul>
+                </li>
+                @endcan
 
 
 
