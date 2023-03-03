@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/assetsLite/css/main.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/assetsLite/css/color_skins.css">
 
-    @stack('Backend_style');
+    @stack('Backend_style')
 
 </head>
 
@@ -92,7 +92,10 @@
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
 
-    @stack('Backend_javaScript');
+    @stack('Backend_javaScript')
+
+
+
 
 
 </body>

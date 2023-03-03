@@ -16,7 +16,7 @@
                 <a href="javascript:void(0);" class="dropdown-toggle user-name"
                     data-toggle="dropdown"><strong>{{ Auth::user()->name }}</strong></a>
                 <ul class="dropdown-menu dropdown-menu-right account">
-                    <li><a href="page-profile.html"><i class="icon-user"></i>My Profile</a></li>
+                    <li><a href="{{ route('myProfile') }}"><i class="icon-user"></i>My Profile</a></li>
                     <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
                     <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
                     <li class="divider"></li>
@@ -67,7 +67,9 @@
                     <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>Role Settings</span></a>
                     <ul>
                         <li><a href="{{ route('role.index') }}">Roles List</a></li>
+                        @can('create-role')
                         <li><a href="{{ route('role.create') }}">Role Create</a></li>
+                        @endcan
 
                     </ul>
                 </li>
@@ -78,12 +80,26 @@
                     <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>User Settings</span></a>
                     <ul>
                         <li><a href="{{ route('user.index') }}">Users List</a></li>
+                        @can('create-user')
                         <li><a href="{{ route('user.create') }}">User Create</a></li>
+                        @endcan
 
                     </ul>
                 </li>
                 @endcan
 
+                @can('index-page')
+                <li>
+                    <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>Pages Builder</span></a>
+                    <ul>
+                        <li><a href="{{ route('page.index') }}">Pages List</a></li>
+                        @can('create-page')
+                        <li><a href="{{ route('page.create') }}">Page Create</a></li>
+                        @endcan
+
+                    </ul>
+                </li>
+                @endcan
 
 
             </ul>

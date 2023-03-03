@@ -21,6 +21,7 @@ class ModuleSeeder extends Seeder
             'Role Management',
             'Profile Management',
             'User Management',
+            'Page Builder',
         ];
 
         foreach ($moduleArray as  $module) {

@@ -55,7 +55,7 @@ class PermissionSeeder extends Seeder
             ]);
         }
 
-       
+
         // Profile Management Or Permission
         $profileManage = Module::where('module_name', 'Profile Management')->select('id')->first();
         foreach ($profileManagement as  $role) {
@@ -81,6 +81,23 @@ class PermissionSeeder extends Seeder
         foreach ($userPermission as  $role) {
             Permission::updateOrCreate([
                 'module_id' => $userManage->id,
+                'permission_name' => $role,
+                'permission_slug' => Str::slug($role),
+            ]);
+        }
+
+        // Page Builder seed
+        $PageBuilder = [
+            'Index Page',
+            'Create Page',
+            'Edit Page',
+            'Delete Page',
+        ];
+        // Page Builder Or Permission
+        $page_builder = Module::where('module_name', 'Page Builder')->select('id')->first();
+        foreach ($PageBuilder as  $role) {
+            Permission::updateOrCreate([
+                'module_id' => $page_builder->id,
                 'permission_name' => $role,
                 'permission_slug' => Str::slug($role),
             ]);

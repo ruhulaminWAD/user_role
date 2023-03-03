@@ -28,6 +28,14 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'), // password
             'remember_token' => Str::random(10),
         ]);
+        User::updateOrCreate([
+            'role_id' => $admin_role_id,
+            'name' => 'Ruhul Amin',
+            'email' => 'ruhul@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'), // password
+            'remember_token' => Str::random(10),
+        ]);
 
         // User create
         $user_role_id = Role::where('role_slug', 'user')->first()->id;
@@ -35,6 +43,22 @@ class UserSeeder extends Seeder
             'role_id' => $user_role_id,
             'name' => 'User',
             'email' => 'user@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'), // password
+            'remember_token' => Str::random(10),
+        ]);
+        User::updateOrCreate([
+            'role_id' => $user_role_id,
+            'name' => 'Rofiqul Islam',
+            'email' => 'rofiqul@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'), // password
+            'remember_token' => Str::random(10),
+        ]);
+        User::updateOrCreate([
+            'role_id' => $user_role_id,
+            'name' => 'Ashraful Islam',
+            'email' => 'ashraful@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
             'remember_token' => Str::random(10),

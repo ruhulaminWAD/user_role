@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 
+use function PHPSTORM_META\type;
+
 class UserController extends Controller
 {
     /**
@@ -120,5 +122,23 @@ class UserController extends Controller
         User::find($id)->delete();
         Toastr::warning('User Delete Successfull');
         return redirect()->back();
+    }
+
+    // check Is_active status with ajax
+    public function check_is_active($user_id)
+    {
+        // dd($user_id);
+       $user = User::find($user_id);
+
+       if ($user->is_active == 1) {
+        $user->is_active == 0;
+       } else {
+        $user->is_active == 1;
+       }
+       $user->update();
+       return response()->json([
+        'type' => 'success',
+        'message' => 'Status Update',
+       ]);
     }
 }
