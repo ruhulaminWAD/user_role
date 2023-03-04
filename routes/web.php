@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\PermissionController;
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/{page_slug}', [FrontendController::class, 'pageShow']);
+Route::get('/page/{page_slug}', [FrontendController::class, 'pageShow']);
 
 Auth::routes();
 
@@ -42,6 +43,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::resource('/role', RoleController::class);
     Route::resource('/user', UserController::class);
     Route::resource('/page', PageController::class);
+    Route::resource('/backup', BackupController::class)->only('index', 'store', 'destroy');
 
     // ajax start
     Route::get('/user/is_active/{user_id}', [UserController::class, 'check_is_active']);
