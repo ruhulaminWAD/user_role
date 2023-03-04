@@ -58,10 +58,10 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            
+
             // add dump
             'dump' => [
-                'dump' => 'C:\xampp\mysql\bin',   // Only the path where xampp installed or mysqldump
+                'dump_binary_path' => 'C:\xampp\mysql\bin',   // Only the path where xampp installed or mysqldump
                 'use_single_transaction',
                 'timeout' => 60*5,  // 5 minutes timeout.
             ],
