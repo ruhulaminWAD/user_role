@@ -62,6 +62,7 @@ return [
             // add dump
             'dump' => [
                 'dump_binary_path' => 'C:\xampp\mysql\bin',   // Only the path where xampp installed or mysqldump
+                /* For server use this thing: 'dump_binary_path' => 'your_domain_name/project_name', */
                 'use_single_transaction',
                 'timeout' => 60*5,  // 5 minutes timeout.
             ],

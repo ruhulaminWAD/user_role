@@ -101,6 +101,16 @@
                 </li>
                 @endcan
 
+                @can('index-page')
+                <li>
+                    <a href="#uiElements" class="has-arrow"><i class="icon-diamond"></i><span>Backup Management</span></a>
+                    <ul>
+                        <li><a href="{{ route('backup.index') }}">Backup List</a></li>
+
+                    </ul>
+                </li>
+                @endcan
+
 
             </ul>
         </nav>
