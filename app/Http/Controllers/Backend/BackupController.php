@@ -79,7 +79,7 @@ class BackupController extends Controller
         //Start the process of backup create
         Artisan::call('backup:run');  //  databesh & file download
         // Artisan::call('backup:run --only-db');  // only databesh download
-        dd(Artisan::output());
+        // dd(Artisan::output());
         return back();
     }
 
