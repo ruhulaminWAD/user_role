@@ -111,6 +111,17 @@
                 </li>
                 @endcan
 
+                @can('index-page')
+                <li>
+                    <a href="#uiElements" class="has-arrow"><i class="fa fa-cog"></i><span>System Setting Management</span></a>
+                    <ul>
+                        <li><a href="{{ route('settings.general') }}">General Setting</a></li>
+                        <li><a href="{{ route('settings.apperance') }}">Apperance Setting</a></li>
+
+                    </ul>
+                </li>
+                @endcan
+
 
             </ul>
         </nav>

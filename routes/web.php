@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Auth;
@@ -51,8 +52,17 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     // ajax start
     Route::get('/page/is_active/{page_id}', [PageController::class, 'check_is_active']);
 
-
-
     Route::get('/my-profile/', [ProfileController::class, 'myProfile'])->name('myProfile');
+
+    // System Setting Management Route
+    Route::group(['as' => 'settings.', 'prefix' => 'settings'], function(){
+        /** General Setting **/
+        Route::get('general', [SettingController::class, 'general'])->name('general');
+        Route::post('general', [SettingController::class, 'generalUpdate'])->name('general.update');
+
+        /** Apperance Setting **/
+        Route::get('apperance', [SettingController::class, 'apperance'])->name('apperance');
+        Route::post('apperance', [SettingController::class, 'apperanceUpdate'])->name('apperance.update');
+    });
 
 });
