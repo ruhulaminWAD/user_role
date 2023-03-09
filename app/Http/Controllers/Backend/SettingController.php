@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ApperanceUpdateRequest;
 use App\Http\Requests\SettingUpdateRequest;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
@@ -60,13 +62,41 @@ class SettingController extends Controller
        return view('backend.pages.setting.apperance_setting');
     }
 
-    public function apperanceUpdate(SettingUpdateRequest $request)
+    public function apperanceUpdate(ApperanceUpdateRequest $request)
     {
     //    dd($request->all());
 
+        Setting::updateOrCreate(
+            ['name' => 'bg_color'],
+            ['value' => $request->bg_color],
+        );
 
+        if ($request->hasFile('logo_image')) {
+            if (setting('logo_image') !=null) {
+                $this->deleteOldFile(setting('logo_image'));
+            }
+            Setting::updateOrCreate(
+                ['name' => 'logo_image'],
+                ['value' => Storage::putFileAs('public', $request->file('logo_image'), 'logo_image.jpg')],
+            );
+        }
+        if ($request->hasFile('favicon_image')) {
+            if (setting('favicon_image') !=null) {
+                $this->deleteOldFile(setting('favicon_image'));
+            }
+            Setting::updateOrCreate(
+                ['name' => 'favicon_image'],
+                ['value' => Storage::putFileAs('public', $request->file('favicon_image'), 'favicon_image.jpg')],
+            );
+        }
 
         Toastr::success('apperance Setting Update');
         return redirect()->back();
     }
+
+    private function deleteOldFile($path)
+    {
+       Storage::disk('public')->delete($path);
+    }
+
 }
