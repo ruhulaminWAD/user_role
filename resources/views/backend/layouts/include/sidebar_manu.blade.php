@@ -117,6 +117,7 @@
                     <ul>
                         <li><a href="{{ route('settings.general') }}">General Setting</a></li>
                         <li><a href="{{ route('settings.apperance') }}">Apperance Setting</a></li>
+                        <li><a href="{{ route('settings.mail') }}">Mail Setting</a></li>
 
                     </ul>
                 </li>
