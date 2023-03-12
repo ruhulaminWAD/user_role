@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\PageController;
@@ -27,6 +28,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/page/{page_slug}', [FrontendController::class, 'pageShow']);
+
+/** Socialite Login Routes  **/
+Route::group(['as'=>'login.', 'prefix'=>'login'], function(){
+    Route::get('/{provider}', [LoginController::class, 'predirectToProvider'])->name('provider');
+    Route::get('/{provider}/callback', [LoginController::class, 'handlePredirectToProvider'])->name('provider.callback');
+});
+
+
+
 
 Auth::routes();
 
