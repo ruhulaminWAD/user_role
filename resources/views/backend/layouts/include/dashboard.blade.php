@@ -1,18 +1,3 @@
-
-@extends('backend.layouts.master')
-
-{{-- Page Title --}}
-@section('page_title', 'Dashboard')
-
-{{-- Additional CSS --}}
-@push('Backend_style')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
-@endpush
-
-
-{{-- Main Content --}}
-@section('admin_content')
-
 <div class="block-header">
     <div class="row clearfix">
         <div class="col-md-6 col-sm-12">
@@ -20,9 +5,10 @@
         </div>
         <div class="col-md-6 col-sm-12 text-right">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href=""><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ul>
+            <a href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Create New</a>
         </div>
     </div>
 </div>
@@ -145,7 +131,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card">
                 <div class="header">
-                    <h2>User List</h2>
+                    <h2>Active Order</h2>
                     <ul class="header-dropdown dropdown dropdown-animated scale-left">
                         <li> <a href="javascript:void(0);" data-toggle="cardloading" data-loading-effect="pulse"><i class="icon-refresh"></i></a></li>
                         <li><a href="javascript:void(0);" class="full-screen"><i class="icon-size-fullscreen"></i></a></li>
@@ -160,61 +146,109 @@
                     </ul>
                 </div>
                 <div class="body">
-                    <div class="table-responsive check-all-parent">
-                        <table class="table table-hover m-b-0 c_list" id="myTable">
-                            <thead>
+                    <div class="table-responsive">
+                        <table class="table table-hover js-basic-example dataTable table-custom mb-0">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <th>#</th>
-                                    <th>Last Update</th>
-                                    <th>User Name</th>
-                                    <th>User Email</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Amount BTC</th>
+                                    <th>BTC Remaining</th>
+                                    <th>Price</th>
+                                    <th>USD</th>
+                                    <th>Fee (%)</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
-                                <tbody>
-                                    @forelse ($users as $user)
-                                    <tr>
-                                        <td style="width: 50px;"><strong>{{ $loop->index+1 }}</strong></td>
-                                        <td>
-                                            <address><i class="zmdi zmdi-pin"> {{ $user->updated_at->format('d-M-Y') }}</address>
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset('backend') }}/assets/images/xs/avatar1.jpg" class="rounded-circle avatar" alt="">
-                                                <p class="c_name">{{ $user->name }} <span class="badge badge-default m-l-10 hidden-sm-down">{{ $user->role->role_name }}</span></p>
-                                            <span class="phone"></span>
-                                        </td>
-                                        <td>
-                                            <span class="phone">{{ $user->email }}</span>
-                                        </td>
-                                        <td>
-                                            {{-- @if($user->UserOnline())
-                                            <span class="badge badge-pill badge-success">Active Now</span>
-                                            @else
-                                            <span class="badge badge-pill badge-success">{{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</span>
-                                            @endif --}}
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-info" title="Edit" href="{{ route('user.edit', $user->id) }}"><i class="fa fa-edit"></i></a>
-
-                                            <form class="d-inline" action="{{ route('user.destroy', $user->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button href="" type="submit" data-type="confirm" class="btn btn-danger" title="Delete" id="delete"><i class="fa fa-trash-o"></i></button>
-                                            </form>
-
-
-
-                                        </td>
-                                    </tr>
-                                    @empty
-
-                                    @endforelse
-
-
-                                </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>28-July-2018 06:51:51</td>
+                                    <td>Buy</td>
+                                    <td>
+                                        0.58647</td>
+                                    <td>
+                                        0.58647</td>
+                                    <td>11900.12</td>
+                                    <td>$ 1597.78</td>
+                                    <td>0.023</td>
+                                    <td>
+                                        <button class="btn btn-sm round btn-outline-success">Accept</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>28-July-2018 06:50:50</td>
+                                    <td>Sell</td>
+                                    <td>
+                                        1.38647</td>
+                                    <td>
+                                        0.38647</td>
+                                    <td>11905.09</td>
+                                    <td>$ 2496.36</td>
+                                    <td>0.017</td>
+                                    <td>
+                                            <button class="btn btn-sm round btn-outline-success">Accept</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>28-July-2018 06:49:51</td>
+                                    <td >Buy</td>
+                                    <td>
+                                        0.45879</td>
+                                    <td>
+                                        0.45879</td>
+                                    <td>11901.85</td>
+                                    <td>$ 3165.44</td>
+                                    <td>0.013</td>
+                                    <td>
+                                        <button class="btn btn-sm round btn-outline-success"> Accept</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>28-July-2018 06:51:51</td>
+                                    <td>Buy</td>
+                                    <td>
+                                        0.89877</td>
+                                    <td>
+                                        0.89877</td>
+                                    <td>11899.28</td>
+                                    <td>$ 25830.6</td>
+                                    <td>0.011</td>
+                                    <td>
+                                            <button class="btn btn-sm round btn-outline-success">Accept</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>28-July-2018 06:51:51</td>
+                                    <td>Sell</td>
+                                    <td>
+                                        0.45712</td>
+                                    <td>
+                                        0.45712</td>
+                                    <td>11908.19</td>
+                                    <td>$ 2586.34</td>
+                                    <td>0.024</td>
+                                    <td>
+                                            <button class="btn btn-sm round btn-outline-danger"> Cancel</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>28-July-2018 06:51:51</td>
+                                    <td>Buy</td>
+                                    <td>
+                                        0.58647</td>
+                                    <td>
+                                        0.58647</td>
+                                    <td>11900.12</td>
+                                    <td>$ 1597.78</td>
+                                    <td>0.023</td>
+                                    <td>
+                                        <button class="btn btn-sm round btn-outline-success">Accept</button>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -388,21 +422,3 @@
     </div>
 
 </div>
-
-
-@endsection
-
-
-{{-- Additional JS --}}
-@push('Backend_javaScript')
-<script src="http://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
-<script>
-    // start data filter
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-    });
-    // end data filter
-
-
-</script>
-@endpush
